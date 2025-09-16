@@ -1,0 +1,3 @@
+
+// Code for Calculating the price of your order based on settings
+// I dont know any javascript so this will be very fun...
