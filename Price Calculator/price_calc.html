@@ -3,15 +3,18 @@
     <head>
         <title>Astro's Printing Service</title>
         <link rel="stylesheet" href="../styles.css">
-        <script src="Price Calculator/price_calculator.js"></script>
     </head>
     <body>
         <p class="Center_Large">Price Calculator</p>
         <p class="Center_Small">Determines the cost of a print based on its settings.</p>
 
+        <br>
+        <div class="Input_Row">
         <div class="Input_Container">
             <label for="mass" class="Textbox_Small">Mass:</label>
-            <input type="number" id="mass" name="mass" class="Input_Small" placeholder="Mass of Print in g.">
+            <input type="number" id="mass" name="mass" class="Input_Small" placeholder="Mass of Print in grams.">
+        </div>
+        
         </div>
         <br>
 
@@ -31,6 +34,13 @@
         </div>
 
         </div>
+
         <br>
+        <p class="Textbox_Small">Price: </p><p class="Textbox_Small" id="cost"></p>
+        <br>
+        
+        
+        <!--JS Scripts-->
+        <script src="price_calculator.js"></script>
     </body>
 </html>
