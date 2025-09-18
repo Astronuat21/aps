@@ -30,4 +30,51 @@ window.onload = function () {
     document.getElementById("size_x").addEventListener("input", main);
     document.getElementById("size_y").addEventListener("input", main);
     document.getElementById("size_z").addEventListener("input", main);
+
+
+    let colorCount = 0;
+    // Add color dropdown
+    document.getElementById("add-color-btn").addEventListener("click", function () {
+        if (colorCount >= 4) return; // limit to 4
+        colorCount++;
+
+        // Thanks GPT lol
+        let container = document.createElement("div");
+        container.classList.add("Input_Container");
+        container.id = `color-container-${colorCount}`;
+        let label = document.createElement("label");
+        label.setAttribute("for", `color-${colorCount}`);
+        label.classList.add("Textbox_Small");
+        label.innerText = `Color ${colorCount}:`;
+        let select = document.createElement("select");
+        select.name = "colors";
+        select.id = `color-${colorCount}`;
+        select.classList.add("Textbox_Small");
+
+        // Add the thingies in the dropdown
+        let colors = ["red", "orange", "yellow", "green", "dark green", "blue", "violet", "brown", "gold", "white", "silver", "black"];
+        colors.forEach(color => {
+            let option = document.createElement("option");
+            option.value = color;
+            option.innerText = color//.charAt(0).toUpperCase() + color.slice(1);
+            select.appendChild(option);
+        });
+
+        container.appendChild(label);
+        container.appendChild(select);
+        document.getElementById("color-container").appendChild(container);
+
+        main(); // recalc
+    });
+
+    // Remove last color dropdown
+    document.getElementById("remove-color-btn").addEventListener("click", function () {
+        if (colorCount <= 1) return; // keep at least 1
+        let containerToRemove = document.getElementById(`color-container-${colorCount}`);
+        if (containerToRemove) {
+            containerToRemove.remove();
+        }
+        colorCount--;
+        main(); // recalc
+    });
 };
