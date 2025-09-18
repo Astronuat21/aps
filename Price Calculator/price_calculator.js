@@ -15,11 +15,11 @@ function main() {
     let price = weight * 0.03;
 
     // Size based on taken plate space
-    let plate_space = (X_SIZE * Y_SIZE) / 65536
-    price = price + plate_space
+    let plate_space = (X_SIZE * Y_SIZE) / 256 * 256;
+    price = price + plate_space;
 
     // Height (Small Boost)
-    price = price + (Z_SIZE * 0.0005)
+    price = price + (Z_SIZE * 0.0005);
 
     // Push value
     document.getElementById("cost").innerText = "$" + price.toFixed(2);
