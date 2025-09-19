@@ -29,6 +29,14 @@ body {
     color: grey;
 }
 
+.Iamge_Small {
+    margin: 3px;
+    align-items: center;
+    text-align: center; 
+    color: grey;
+    width: 50px;
+}
+
 .Button_Base {
     size: 20cm;
     padding: 10px 15px;
