@@ -1,28 +1,36 @@
+let colorCount = 1;
+
 function main() {
     let weightInput = document.getElementById("mass").value;
     let weight = weightInput ? Number(weightInput) : 0;
 
     let size_xInput = document.getElementById("size_x").value;
-    let X_SIZE = size_xInput ? Number(size_xInput) : 1;
-
     let size_yInput = document.getElementById("size_y").value;
-    let Y_SIZE = size_yInput ? Number(size_yInput) : 1;
+
+    let X_SIZE = size_xInput ? Number(size_xInput) : size_yInput ? 1 : 0;
+    let Y_SIZE = size_yInput ? Number(size_yInput) : size_xInput ? 1 : 0;
 
     let size_zInput = document.getElementById("size_z").value;
-    let Z_SIZE = size_zInput ? Number(size_zInput) : 1;
+    let Z_SIZE = size_zInput ? Number(size_zInput) : 0;
 
     // Weight
     let price = weight * 0.03;
 
     // Size based on taken plate space
-    let plate_space = (X_SIZE * Y_SIZE) / 256 * 256;
-    price = price + plate_space;
+    let plate_space = (X_SIZE * Y_SIZE) / 65536;
+    price += plate_space;
 
     // Height (Small Boost)
-    price = price + (Z_SIZE * 0.0005);
+    price += (Z_SIZE * 0.0005);
+
+    // Color Price
+    price += (colorCount - 1) * 0.1
 
     // Push value
     document.getElementById("cost").innerText = "$" + price.toFixed(2);
+
+    //Console Log:
+    console.log("Pushed value:", price)
 }
 
 window.onload = function () {
@@ -30,9 +38,8 @@ window.onload = function () {
     document.getElementById("size_x").addEventListener("input", main);
     document.getElementById("size_y").addEventListener("input", main);
     document.getElementById("size_z").addEventListener("input", main);
+    main();
 
-
-    let colorCount = 0;
     // Add color dropdown
     document.getElementById("add-color-btn").addEventListener("click", function () {
         if (colorCount >= 4) return; // limit to 4
